@@ -1,10 +1,11 @@
-class Disk {
+class Square {
     x;
     y;
     d;
     vx;
     vy;
     c;
+    rotation;
     constructor(x, y, d, vx, vy, c) {
         this.x = x;
         this.y = y;
@@ -12,6 +13,9 @@ class Disk {
         this.vx = random(-2, 2);
         this.vy = random(-2, 2);
         this.c = color(random(255), random(255), random(255));
+        angleMode(DEGREES)
+        rectMode(CENTER)
+        this.rotation = 0;
     }
     update() {
         this.x += this.vx;
@@ -34,7 +38,7 @@ class Disk {
         }
         if (this.y <= 0 + r || this.y >= height - r) {
             this.vy = -this.vy;
-            if (this.vy < 0 && this.vy > -20) {
+            if (this.vy < 0 && this.vx > -20) {
                 this.vy = this.vy - 0.5;
 
                 print(this.vx)
@@ -47,10 +51,15 @@ class Disk {
             }
             this.c = color(random(255), random(255), random(255));
         }
+        this.rotation += 5;
     }
     draw() {
         fill(this.c)
         stroke(this.c)
-        circle(this.x, this.y, this.d)
+        push()
+        translate(this.x, this.y)
+        rotate(this.rotation)
+        square(0, 0, this.d)
+        pop()
     }
 }

@@ -1,4 +1,4 @@
-class Disk {
+class Shape {
     x;
     y;
     d;
@@ -47,10 +47,5 @@ class Disk {
             }
             this.c = color(random(255), random(255), random(255));
         }
-    }
-    draw() {
-        fill(this.c)
-        stroke(this.c)
-        circle(this.x, this.y, this.d)
     }
 }
